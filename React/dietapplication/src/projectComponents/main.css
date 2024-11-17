@@ -1,0 +1,5 @@
+.main-content-col {
+  min-height: 600px; /* Set the desired minimum height here */
+  display: flex;
+  flex-direction: column;
+}
