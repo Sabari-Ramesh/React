@@ -1,8 +1,7 @@
-import React,{Component} from 'react'
+import React, { Component } from "react";
 
-
-export function Update(){
-    return(
-        <div>Updated details</div>
-    )
+export default class Update extends Component {
+  render() {
+    return <p>Update</p>;
+  }
 }
