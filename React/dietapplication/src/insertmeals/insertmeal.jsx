@@ -190,7 +190,7 @@ class Insert extends Component {
                   onChange={this.handleChange}
                 >
                   <option value="select">Select Meal Type</option>
-                  <option value="Snacks">Snacks</option>
+                  <option value="Snack">Snack</option>
                   <option value="Breakfast">Breakfast</option>
                   <option value="Dinner">Dinner</option>
                   <option value="Lunch">Lunch</option>

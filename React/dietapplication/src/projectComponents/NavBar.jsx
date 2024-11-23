@@ -54,7 +54,7 @@ class NavBar extends Component {
 
     return (
       <Container fluid>
-        <nav className="text-white" style={{ backgroundColor: "#f3a683" }}>
+        <nav className="text-white" style={{ backgroundColor: "#8b57ea" }}>
           <Row className="align-items-center" style={{ height: "70px" }}>
             {/* Logo Section */}
             <Col xs={3}>

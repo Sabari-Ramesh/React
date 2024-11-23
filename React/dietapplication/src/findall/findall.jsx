@@ -1,106 +1,68 @@
-import react, { Component } from "react";
+import React, { Component } from "react";
 import { Table } from "react-bootstrap";
-
-class FindAll extends Component{
-  constructor(props){
+export default class FindAll extends Component {
+  constructor(props) {
     super(props);
-    this.state={
-      meals :[
-        {
-          id: 1,
-          userId: 101,
-          mealType: "Breakfast",
-          mealDate: "2024-11-17",
-          foodName: "meal",
-          quantity: 100, 
-          calories: 150,
-          protein: 5, 
-          carbohydrates: 27, 
-          vitamins: 0.5,
-        },
-        {
-          id: 2,
-          userId: 102,
-          mealType: "Lunch",
-          mealDate: "2024-11-17",
-          foodName: "Grilled Chicken",
-          quantity: 200,
-          calories: 350,
-          protein: 30, 
-          carbohydrates: 10, 
-          vitamins: 1.2, 
-        },
-        {
-          id: 3,
-          userId: 103,
-          mealType: "Snack",
-          mealDate: "2024-11-17",
-          foodName: "Apple",
-          quantity: 150,
-          calories: 95,
-          protein: 0.5, 
-          carbohydrates: 25, 
-          vitamins: 0.7, 
-        },
-        {
-          id: 4,
-          userId: 104,
-          mealType: "Dinner",
-          mealDate: "2024-11-17",
-          foodName: " Vegetables and Rice",
-          quantity: 250, 
-          calories: 400,
-          protein: 8, 
-          carbohydrates: 60, 
-          vitamins: 2.0,
-        },
-      ]
-    }
+    this.state = {
+      meals: []
+    };
   }
 
-  render(){
-    return(
+  componentDidMount() {
+    fetch("http://localhost:8080/mealdetails/findAll")
+      .then((response) => response.json())
+      .then((data) => {
+        // Update the component’s state with the fetched data
+        this.setState({ meals: data });
+      })
+      .catch((error) => console.error("Error fetching data:", error));
+  }
+
+  render() {
+    return (
       <div className="table-responsive">
-        <h2 className="text-center">Meal Details</h2>
+        <h2 className="text-center">All Meal Details</h2>
         <Table striped bordered hover>
           <thead>
             <tr>
-              <th>Meal Id</th>
-              <th>User Id</th>
+              <th>Meal ID</th>
+              <th>User ID</th>
               <th>Meal Type</th>
               <th>Meal Date</th>
-              <th>Meal Name</th>
-              <th>Quantity</th>
-              <th>Calories</th>
-              <th>Protein</th>
-              <th>Carbohydrates</th>
-              <th>Vitamins</th>
+              <th>Food Name</th>
+              <th>Quantity (g)</th>
+              <th>Calories (g)</th>
+              <th>Protein (g)</th>
+              <th>Carbohydrates (g)</th>
+              <th>Vitamins (g)</th>
             </tr>
           </thead>
           <tbody>
-            {
-              this.state.meals.map((meal)=>(
+            {this.state.meals && this.state.meals.length > 0 ? (
+              this.state.meals.map((meal) => (
                 <tr key={meal.id}>
-                <td>{meal.id}</td>
-                <td>{meal.userId}</td>
-                <td>{meal.mealType}</td>
+                <td>{meal.mealId}</td>
+                <td>{meal.userid}</td>
+                <td>{meal.meal}</td>
                 <td>{meal.mealDate}</td>
                 <td>{meal.foodName}</td>
                 <td>{meal.quantity}</td>
                 <td>{meal.calories}</td>
                 <td>{meal.protein}</td>
-                <td>{meal.carbohydrates}</td>
+                <td>{meal.carbs}</td>
                 <td>{meal.vitamins}</td>
                 </tr>
               ))
-            }
+            ) : (
+              <tr>
+                <td colSpan="10" className="text-center">
+                  No Details Available
+                </td>
+              </tr>
+            )}
           </tbody>
         </Table>
       </div>
-    )
+    );
   }
-
-
 }
-
-export default FindAll;
