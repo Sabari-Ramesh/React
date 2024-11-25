@@ -1,0 +1,42 @@
+/* .notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    opacity: 0.9;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  .notification.hide {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+   */
+
+
+
+/* notification.css */
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #28a745; /* Success green */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* Hide notification */
+.notification.hide {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}

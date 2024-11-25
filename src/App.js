@@ -6,16 +6,13 @@ import LoginSelector from "./Login/LoginSelector";
 function App() {
   return (
     <div className="App">
+      {/* <Main></Main> */}
       <LoginSelector />
+      {/* <UserLogin /> */}
     </div>
   );
 }
 
 export default App;
 
-{
-  /* <UserLogin /> */
-}
-{
-  /* <Main></Main> */
-}
+

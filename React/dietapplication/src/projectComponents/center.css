@@ -1,0 +1,11 @@
+/* .main-container {
+    height: 100vh;
+    overflow-y: auto;
+  } */
+
+.menu-container {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  padding-top: 20px;
+}
