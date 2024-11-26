@@ -11,8 +11,10 @@ class Main extends Component {
     console.log(user);
     return (
       <Container fluid style={{ backgroundColor: "	#ffdbdc" }}>
-        <NavBar userName={user?.userName || user?.username} />
-        <Center user={user} />
+        <NavBar /> 
+        {/* userName={user?.userName || user?.username} */}
+        <Center />
+        {/* user={user} */}
         <Footer />
       </Container>
     );

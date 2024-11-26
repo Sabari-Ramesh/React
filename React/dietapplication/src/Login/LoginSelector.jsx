@@ -1,3 +1,7 @@
+//LoginSelector.js
+
+
+
 // import React, { Component } from "react";
 // import { Container, Form, Button, Card, Row, Col } from "react-bootstrap";
 // import Main from "../projectComponents/main";
@@ -9,7 +13,7 @@
 //     this.state = {
 //       email: "",
 //       password: "",
-//       loginType: "User", // Default to "User" login form initially
+//       loginType: "User", 
 //       isLoggedIn: false,
 //       user: null,
 //       errorMessage: "",
@@ -37,7 +41,7 @@
 //     const requestBody = { email, password };
 //     const url =
 //       loginType === "Admin"
-//         ? "http://localhost:8080/admindetails/adminlogin"
+//         ? "http://localhost:8080/userdetails/adminlogin"
 //         : "http://localhost:8080/userdetails/userlogin";
 
 //     fetch(url, {
@@ -52,7 +56,7 @@
 //         return response.json();
 //       })
 //       .then((data) => {
-//         if (data && data.userId) {
+//         if (data && (data.adminId || data.userId)) {
 //           this.setState({ isLoggedIn: true, user: data });
 //         } else {
 //           this.setState({ errorMessage: "Invalid credentials" });
@@ -65,10 +69,8 @@
 //   };
 
 //   render() {
-//     const { email, password, isLoggedIn, errorMessage, user, loginType } =
-//       this.state;
+//     const { email, password, isLoggedIn, errorMessage, user, loginType } = this.state;
 
-//     // If logged in, render the Main component
 //     if (isLoggedIn) {
 //       return <Main user={user} />;
 //     }
@@ -84,18 +86,12 @@
 //       >
 //         <Row className="w-100 justify-content-center">
 //           <Col xs={12} md={6} lg={4}>
-//             <Card
-//               className="shadow-lg p-4 rounded-4"
-//               style={{ borderRadius: "1rem" }}
-//             >
+//             <Card className="shadow-lg p-4 rounded-4" style={{ borderRadius: "1rem" }}>
 //               <Card.Body>
-//                 {/* Toggle Buttons for Admin and User Login */}
 //                 <Row className="text-center mb-4">
 //                   <Col>
 //                     <Button
-//                       variant={
-//                         loginType === "Admin" ? "primary" : "outline-primary"
-//                       }
+//                       variant={loginType === "Admin" ? "primary" : "outline-primary"}
 //                       onClick={() => this.handleLoginTypeSelect("Admin")}
 //                       className="w-100 py-2 mb-2"
 //                       style={{ fontWeight: "bold", borderRadius: "1rem" }}
@@ -105,9 +101,7 @@
 //                   </Col>
 //                   <Col>
 //                     <Button
-//                       variant={
-//                         loginType === "User" ? "primary" : "outline-primary"
-//                       }
+//                       variant={loginType === "User" ? "primary" : "outline-primary"}
 //                       onClick={() => this.handleLoginTypeSelect("User")}
 //                       className="w-100 py-2 mb-2"
 //                       style={{ fontWeight: "bold", borderRadius: "1rem" }}
@@ -116,15 +110,11 @@
 //                     </Button>
 //                   </Col>
 //                 </Row>
-
-//                 {/* Display the form for the selected login type */}
 //                 <h3 className="text-center mb-4" style={{ color: "#1976d2" }}>
 //                   {loginType} Login
 //                 </h3>
 //                 {errorMessage && (
-//                   <div className="text-danger mt-3 text-center">
-//                     {errorMessage}
-//                   </div>
+//                   <div className="text-danger mt-3 text-center">{errorMessage}</div>
 //                 )}
 //                 <Form onSubmit={this.handleSubmit}>
 //                   <Form.Group controlId="email" className="mb-3">
@@ -173,13 +163,17 @@
 
 // export default LoginSelector;
 
+//---------------------------------------------------------------------------------------------------
 
+//React Context
 
-// LoginSelector.js
-import React, { Component } from "react";
+import React, { Component, createContext } from "react";
 import { Container, Form, Button, Card, Row, Col } from "react-bootstrap";
 import Main from "../projectComponents/main";
 import "./login.css";
+
+// Create UserContext 
+export const UserContext = createContext();
 
 class LoginSelector extends Component {
   constructor(props) {
@@ -187,7 +181,7 @@ class LoginSelector extends Component {
     this.state = {
       email: "",
       password: "",
-      loginType: "User", // Default to "User" login form initially
+      loginType: "User",
       isLoggedIn: false,
       user: null,
       errorMessage: "",
@@ -246,7 +240,11 @@ class LoginSelector extends Component {
     const { email, password, isLoggedIn, errorMessage, user, loginType } = this.state;
 
     if (isLoggedIn) {
-      return <Main user={user} />;
+      return (
+        <UserContext.Provider value={user}>
+          <Main />
+        </UserContext.Provider>
+      );
     }
 
     return (
@@ -336,3 +334,6 @@ class LoginSelector extends Component {
 }
 
 export default LoginSelector;
+
+
+

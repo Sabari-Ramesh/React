@@ -12,7 +12,6 @@ export default class FindAll extends Component {
     fetch("http://localhost:8080/mealdetails/findAll")
       .then((response) => response.json())
       .then((data) => {
-        // Update the component’s state with the fetched data
         this.setState({ meals: data });
       })
       .catch((error) => console.error("Error fetching data:", error));

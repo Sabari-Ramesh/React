@@ -177,8 +177,10 @@
 
 import React, { Component } from "react";
 import { Form, Button, Table, Row, Col, Container } from "react-bootstrap";
+import { UserContext } from "../Login/LoginSelector";
 
 export default class QuantityRange extends Component {
+  static contextType = UserContext;
   constructor(props) {
     super(props);
 
@@ -186,7 +188,7 @@ export default class QuantityRange extends Component {
       min: "",
       max: "",
       error: { min: "", max: "" },
-      meals: null, // Start with `meals` as `null` to detect the initial state
+      meals: null, 
     };
   }
 
@@ -243,9 +245,9 @@ export default class QuantityRange extends Component {
       return;
     }
 
-    // Fetch meals based on quantity range and user ID
+    const userId = this.context?.userId;
     fetch(
-      `http://localhost:8080/mealdetails/quantityRange?min=${min}&max=${max}&userId=${this.props.userId}`
+      `http://localhost:8080/mealdetails/quantityRange?min=${min}&max=${max}&userId=${userId}`
     )
       .then((response) => response.json())
       .then((data) => {
