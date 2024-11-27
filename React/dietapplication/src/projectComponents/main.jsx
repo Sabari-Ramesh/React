@@ -7,11 +7,9 @@ import "./main.css";
 
 class Main extends Component {
   render() {
-    const { user } = this.props;
-    console.log(user);
     return (
       <Container fluid style={{ backgroundColor: "	#ffdbdc" }}>
-        <NavBar /> 
+        <NavBar />
         {/* userName={user?.userName || user?.username} */}
         <Center />
         {/* user={user} */}

@@ -120,6 +120,7 @@
 import React, { Component } from "react";
 import { Form, Button, Container, Alert, Row, Col } from "react-bootstrap";
 import { UserContext } from "../Login/LoginSelector";
+//import UserContext from "../contexts/UserContext"
 
 export default class FindCalories extends Component {
   static contextType = UserContext;

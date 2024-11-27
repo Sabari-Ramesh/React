@@ -178,6 +178,7 @@
 import React, { Component } from "react";
 import { Form, Button, Table, Row, Col, Container } from "react-bootstrap";
 import { UserContext } from "../Login/LoginSelector";
+//import UserContext from "../contexts/UserContext"
 
 export default class QuantityRange extends Component {
   static contextType = UserContext;
@@ -188,7 +189,7 @@ export default class QuantityRange extends Component {
       min: "",
       max: "",
       error: { min: "", max: "" },
-      meals: null, 
+      meals: null,
     };
   }
 

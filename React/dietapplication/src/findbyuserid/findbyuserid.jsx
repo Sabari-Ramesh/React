@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Table, Container, Alert } from "react-bootstrap";
-import { UserContext } from "../Login/LoginSelector"; 
+import { UserContext } from "../Login/LoginSelector";
+//import UserContext from "../contexts/UserContext"
 
 export default class FindByUserId extends Component {
   static contextType = UserContext;

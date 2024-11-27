@@ -86,7 +86,7 @@
 //       this.setState({ error: "No meal selected for deletion." });
 //       return;
 //     }
-  
+
 //     fetch(`http://localhost:8080/mealdetails/delete?userId=${filteredMeal.userid}&mealId=${filteredMeal.mealId}`, {
 //       method: "DELETE",
 //     })
@@ -111,15 +111,14 @@
 //         this.setState({ error: error.message || "Error deleting meal.", successMessage: null });
 //       });
 //   };
-  
 
 //   handleUpdateMeal = () => {
 //     if (!this.validateForm()) {
 //       return;
 //     }
-  
+
 //     const { filteredMeal } = this.state;
-  
+
 //     fetch(`http://localhost:8080/mealdetails/update`, {
 //       method: "PUT",
 //       headers: {
@@ -144,15 +143,14 @@
 //           searchId: "",
 //         });
 //         this.fetchAllMealDetails(); // Refresh meal details list
-  
+
 //         setTimeout(() => this.setState({ successMessage: null }), 5000); // Hide notification after 3 seconds
 //       })
 //       .catch((error) => {
 //         console.error(error);
 //         this.setState({ error: error.message || "Error updating meal details.", successMessage: null });
 //       });
-//   };  
-
+//   };
 
 //   validateForm = () => {
 //     const { filteredMeal } = this.state;
@@ -180,7 +178,6 @@
 //     }
 //     return true;
 //   };
-
 
 //   render() {
 //     const { allMealDetails, filteredMeal, error, successMessage, searchId, errors } = this.state;
@@ -408,18 +405,26 @@
 //   }
 // }
 
-
 //---------------------------------------------------------------------------------------------------------------
 
 //React Context
 
 import React, { Component } from "react";
-import { Table, Button, Form, Container, Row, Col, Alert } from "react-bootstrap";
-import { UserContext } from "../Login/LoginSelector"; 
+import {
+  Table,
+  Button,
+  Form,
+  Container,
+  Row,
+  Col,
+  Alert,
+} from "react-bootstrap";
+import { UserContext } from "../Login/LoginSelector";
+//import UserContext from "../contexts/UserContext"
 import "./update.css";
 
 export default class Update extends Component {
-  static contextType = UserContext; 
+  static contextType = UserContext;
   constructor(props) {
     super(props);
     this.state = {
@@ -504,9 +509,12 @@ export default class Update extends Component {
     }
 
     const userId = this.context?.userId || this.context?.adminId; // Access userId from context
-    fetch(`http://localhost:8080/mealdetails/delete?userId=${userId}&mealId=${filteredMeal.mealId}`, {
-      method: "DELETE",
-    })
+    fetch(
+      `http://localhost:8080/mealdetails/delete?userId=${userId}&mealId=${filteredMeal.mealId}`,
+      {
+        method: "DELETE",
+      }
+    )
       .then((response) => {
         if (response.ok) {
           this.setState({
@@ -525,7 +533,10 @@ export default class Update extends Component {
       })
       .catch((error) => {
         console.error(error);
-        this.setState({ error: error.message || "Error deleting meal.", successMessage: null });
+        this.setState({
+          error: error.message || "Error deleting meal.",
+          successMessage: null,
+        });
       });
   };
 
@@ -565,7 +576,10 @@ export default class Update extends Component {
       })
       .catch((error) => {
         console.error(error);
-        this.setState({ error: error.message || "Error updating meal details.", successMessage: null });
+        this.setState({
+          error: error.message || "Error updating meal details.",
+          successMessage: null,
+        });
       });
   };
 
@@ -573,11 +587,16 @@ export default class Update extends Component {
     const { filteredMeal } = this.state;
     const errors = {};
 
-    if (filteredMeal.quantity <= 0) errors.quantity = "Quantity must be greater than 0.";
-    if (filteredMeal.calories < 0) errors.calories = "Calories cannot be negative.";
-    if (filteredMeal.protein < 0) errors.protein = "Protein cannot be negative.";
-    if (filteredMeal.carbs < 0) errors.carbs = "Carbohydrates cannot be negative.";
-    if (filteredMeal.vitamins < 0) errors.vitamins = "Vitamins cannot be negative.";
+    if (filteredMeal.quantity <= 0)
+      errors.quantity = "Quantity must be greater than 0.";
+    if (filteredMeal.calories < 0)
+      errors.calories = "Calories cannot be negative.";
+    if (filteredMeal.protein < 0)
+      errors.protein = "Protein cannot be negative.";
+    if (filteredMeal.carbs < 0)
+      errors.carbs = "Carbohydrates cannot be negative.";
+    if (filteredMeal.vitamins < 0)
+      errors.vitamins = "Vitamins cannot be negative.";
 
     const foodNameRegex = /^[A-Za-z\s]+$/;
     if (!foodNameRegex.test(filteredMeal.foodName)) {
@@ -597,18 +616,21 @@ export default class Update extends Component {
   };
 
   render() {
-    const { allMealDetails, filteredMeal, error, successMessage, searchId, errors } = this.state;
+    const {
+      allMealDetails,
+      filteredMeal,
+      error,
+      successMessage,
+      searchId,
+      errors,
+    } = this.state;
 
     return (
       <Container className="mt-4">
         <h2 className="text-center mb-3">Meal Details</h2>
 
         {error && <Alert variant="danger">{error}</Alert>}
-        {successMessage && (
-          <div className="notification">
-            {successMessage}
-          </div>
-        )}
+        {successMessage && <div className="notification">{successMessage}</div>}
 
         <Row className="mb-3">
           <Col md={4}>
@@ -684,10 +706,10 @@ export default class Update extends Component {
           <Form className="mt-4">
             <h3>Update Meal Details</h3>
             <Row className="mb-3">
-            <Col md={6}>
-                  <Form.Group controlId="meal">
-                    <Form.Label>Meal Type</Form.Label>
-                    <Form.Control
+              <Col md={6}>
+                <Form.Group controlId="meal">
+                  <Form.Label>Meal Type</Form.Label>
+                  <Form.Control
                     as="select"
                     name="meal"
                     value={filteredMeal.meal}
@@ -720,16 +742,18 @@ export default class Update extends Component {
 
             <Row className="mb-3">
               <Col md={6}>
-                 <Form.Group controlId="foodName">
-                   <Form.Label>Food Name</Form.Label>
-                   <Form.Control
+                <Form.Group controlId="foodName">
+                  <Form.Label>Food Name</Form.Label>
+                  <Form.Control
                     type="text"
                     name="foodName"
                     value={filteredMeal.foodName}
                     onChange={this.handleInputChange}
                   />
                   {errors.foodName && (
-                    <Form.Text className="text-danger">{errors.foodName}</Form.Text>
+                    <Form.Text className="text-danger">
+                      {errors.foodName}
+                    </Form.Text>
                   )}
                 </Form.Group>
               </Col>
@@ -743,7 +767,9 @@ export default class Update extends Component {
                     onChange={this.handleInputChange}
                   />
                   {errors.quantity && (
-                    <Form.Text className="text-danger">{errors.quantity}</Form.Text>
+                    <Form.Text className="text-danger">
+                      {errors.quantity}
+                    </Form.Text>
                   )}
                 </Form.Group>
               </Col>
@@ -760,7 +786,9 @@ export default class Update extends Component {
                     onChange={this.handleInputChange}
                   />
                   {errors.calories && (
-                    <Form.Text className="text-danger">{errors.calories}</Form.Text>
+                    <Form.Text className="text-danger">
+                      {errors.calories}
+                    </Form.Text>
                   )}
                 </Form.Group>
               </Col>
@@ -774,7 +802,9 @@ export default class Update extends Component {
                     onChange={this.handleInputChange}
                   />
                   {errors.protein && (
-                    <Form.Text className="text-danger">{errors.protein}</Form.Text>
+                    <Form.Text className="text-danger">
+                      {errors.protein}
+                    </Form.Text>
                   )}
                 </Form.Group>
               </Col>
@@ -791,7 +821,9 @@ export default class Update extends Component {
                     onChange={this.handleInputChange}
                   />
                   {errors.carbs && (
-                    <Form.Text className="text-danger">{errors.carbs}</Form.Text>
+                    <Form.Text className="text-danger">
+                      {errors.carbs}
+                    </Form.Text>
                   )}
                 </Form.Group>
               </Col>
@@ -805,19 +837,23 @@ export default class Update extends Component {
                     onChange={this.handleInputChange}
                   />
                   {errors.vitamins && (
-                    <Form.Text className="text-danger">{errors.vitamins}</Form.Text>
+                    <Form.Text className="text-danger">
+                      {errors.vitamins}
+                    </Form.Text>
                   )}
                 </Form.Group>
               </Col>
             </Row>
 
-            <Button variant="primary" onClick={this.handleUpdateMeal}>Update Meal</Button>
-            <Button variant="danger" onClick={this.handleDeleteMeal}>Delete Meal</Button>
+            <Button variant="primary" onClick={this.handleUpdateMeal}>
+              Update Meal
+            </Button>
+            <Button variant="danger" onClick={this.handleDeleteMeal}>
+              Delete Meal
+            </Button>
           </Form>
         )}
       </Container>
     );
   }
 }
-
-
