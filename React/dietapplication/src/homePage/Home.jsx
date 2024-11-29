@@ -1,77 +1,100 @@
-// src/components/Home.js
-import React from 'react';
-import { Container, Row, Col, Button, Card, Navbar, Nav } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
-import './Home.css';
+import React, { Component } from "react";
+import { Container, Row, Col, Card, Button, Badge } from "react-bootstrap";
+import tender from "./images/coconut.jpg";
+import broccoli from "./images/Broccoli.jpg";
+import multivitamin from "./images/Multivitamins.jpg";
+import protein from "./images/Protein Powder.jpg";
+import spinach from "./images/Spinach.jpg";
+import apple from "./images/apple.png";
+import greenapple from "./images/images.jpg"
+import "./Home.css"; 
 
-function Home() {
-  const navigate = useNavigate();
+class DietStore extends Component {
+  state = {
+    products: [
+      {
+        id: 1,
+        name: "Apple",
+        category: "Fruits",
+        price: "$2",
+        image: greenapple,
+        benefits: "Rich in fiber and vitamins.",
+      },
+      {
+        id: 2,
+        name: "Broccoli",
+        category: "Vegetables",
+        price: "$3",
+        image: broccoli,
+        benefits: "High in vitamins and antioxidants.",
+      },
+      {
+        id: 3,
+        name: "Protein Powder",
+        category: "Supplements",
+        price: "$25",
+        image: protein,
+        benefits: "Supports muscle growth and recovery.",
+      },
+      {
+        id: 4,
+        name: "Spinach",
+        category: "Vegetables",
+        price: "$2",
+        image: spinach,
+        benefits: "Rich in iron and fiber.",
+      },
+      {
+        id: 5,
+        name: "Multivitamins",
+        category: "Supplements",
+        price: "$15",
+        image: multivitamin,
+        benefits: "Boosts immunity and energy.",
+      },
+      {
+        id: 6,
+        name: "Tender Coconut",
+        category: "Fruits",
+        price: "$1.5",
+        image: tender,
+        benefits: "Hydrates and replenishes electrolytes.",
+      },
+    ],
+    cart: [],
+  };
 
-  return (
-    <div className="home">
-      {/* Navbar */}
-      <Navbar bg="dark" variant="dark" expand="lg">
-        <Container>
-          <Navbar.Brand href="#home">Diet Tracker</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ms-auto">
-              <Nav.Link href="#features">Features</Nav.Link>
-              <Nav.Link href="#about">About</Nav.Link>
-              <Nav.Link href="#contact">Contact</Nav.Link>
-              <Button 
-                variant="outline-light" 
-                className="ms-3" 
-                onClick={() => navigate('/login')} // Navigate to LoginSelector
-              >
-                Login
-              </Button>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+  render() {
+    const { products, cart } = this.state;
 
-      {/* Hero Section */}
-      <Container fluid className="hero-section text-center p-5">
-        <h1>Welcome to Your Personal Diet Tracker</h1>
-        <p>Track your meals, monitor your calorie intake, and achieve your health goals.</p>
-        <Button variant="primary" size="lg" href="#get-started">
-          Get Started
-        </Button>
-      </Container>
-
-      {/* Features Section */}
-      <Container className="features-section py-5">
-        <h2 className="text-center mb-4">Features</h2>
+    return (
+      <Container fluid>
         <Row>
-          <Col md={4}>
-            <Card className="feature-card text-center">
-              <Card.Body>
-                <Card.Title>Track Your Meals</Card.Title>
-                <Card.Text>Record what you eat and monitor your daily calorie intake.</Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col md={4}>
-            <Card className="feature-card text-center">
-              <Card.Body>
-                <Card.Title>Set Goals</Card.Title>
-                <Card.Text>Define your dietary goals and track your progress over time.</Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col md={4}>
-            <Card className="feature-card text-center">
-              <Card.Body>
-                <Card.Title>Analyze Nutrients</Card.Title>
-                <Card.Text>Get insights into your protein, carb, and vitamin intake.</Card.Text>
-              </Card.Body>
-            </Card>
+          {/* Products Section */}
+          <Col xs={12} className="p-4">
+            <h4>
+              All Products <Badge bg="info">{products.length}</Badge>
+            </h4>
+            <Row>
+              {products.map((product) => (
+                <Col xs={12} md={6} lg={4} className="mb-4" key={product.id}>
+                  <Card className="product-card">
+                    <Card.Img variant="top" src={product.image} />
+                    <Card.Body>
+                      <Card.Title>{product.name}</Card.Title>
+                      <Card.Text>{product.benefits}</Card.Text>
+                      <h5>{product.price}</h5>
+                      <Button variant="success">Add to Cart</Button>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              ))}
+            </Row>
           </Col>
         </Row>
       </Container>
-    </div>
-  );
+    );
+  }
 }
 
-export default Home;
+export default DietStore;

@@ -9,3 +9,58 @@
   height: 100vh;
   padding-top: 20px;
 }
+
+/* General container styling */
+.main-container {
+  background-color: #1e2a3a; /* Dark Blue for main container background */
+  color: #ffffff;
+  min-height: 100vh;
+  padding-top: 1rem;
+}
+
+/* Sidebar styling for menu */
+.menu-container {
+  background-color: #2c3e50; /* Darker blue-gray for sidebar */
+  border-radius: 8px;
+}
+
+.menu-container .menu {
+  padding: 1rem;
+}
+
+.menu-container .menu a {
+  text-decoration: none;
+}
+
+.menu-container .menu .btn-light {
+  background-color: #ffffff;
+  color: #2c3e50; /* Light text on buttons */
+}
+
+.menu-container .menu .btn-primary {
+  background-color: #3498db; /* Bright Blue for primary buttons */
+  color: #ffffff;
+  border: none;
+}
+
+.menu-container .menu .btn {
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+/* Main content area styling */
+.main-content-col {
+  background-color: #ecf0f1;
+  color: #2c3e50;
+  border-radius: 8px;
+  padding: 2rem;
+  min-height: 500px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Advertisement section styling */
+.advertisement-col {
+  background-color: #bdc3c7;
+  border-radius: 8px;
+  padding: 1rem;
+}

@@ -18,13 +18,13 @@ class FindById extends Component {
     const { searchId } = this.state;
 
     // Validate input
-    if (isNaN(searchId) || searchId.trim() === "") {
+  /*  if (isNaN(searchId) || searchId.trim() === "") {
       this.setState({
         errorMessage: "Please Enter a Valid Numeric Value",
         noResults: false,
       });
       return;
-    }
+    } */
 
     // Fetch data from API
     fetch(`http://localhost:8080/mealdetails/fetchByid/${searchId}`)

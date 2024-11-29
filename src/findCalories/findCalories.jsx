@@ -119,8 +119,11 @@
 
 import React, { Component } from "react";
 import { Form, Button, Container, Alert, Row, Col } from "react-bootstrap";
+import { UserContext } from "../Login/LoginSelector";
+//import UserContext from "../contexts/UserContext"
 
 export default class FindCalories extends Component {
+  static contextType = UserContext;
   constructor(props) {
     super(props);
     this.state = {
@@ -184,9 +187,10 @@ export default class FindCalories extends Component {
       });
       return;
     }
+    const userId = this.context?.userId;
 
     fetch(
-      `http://localhost:8080/mealdetails/aggregate?startDate=${startDate}&endDate=${endDate}&userId=${this.props.userId}`
+      `http://localhost:8080/mealdetails/aggregate?startDate=${startDate}&endDate=${endDate}&userId=${userId}`
     )
       .then((response) => response.text())
       .then((data) => {

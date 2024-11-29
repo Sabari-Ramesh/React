@@ -1,5 +1,5 @@
 /* Custom styles for login page */
-body {
+/* body {
   background-color: #f8f9fa;
 }
 
@@ -14,4 +14,214 @@ h3 {
 
 button {
   font-size: 16px;
+} */
+
+/* ------------------------------------------------------------------------------------------- */
+
+/* Full screen layout */
+
+/* src/components/LoginSelector.css  Good and small Correction ---->1  */
+/* 
+
+
+
+/* src/components/login.css */
+
+/* .login-selector {
+  transition: filter 0.3s ease;
+}
+
+.login-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.login-form-container {
+  background-color: white;
+  padding: 3rem; 
+  border-radius: 15px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 500px; 
+  text-align: center;
+  max-width: 100%;
+  position: relative; 
+}
+
+.login-overlay * {
+  z-index: 10000;
+}
+
+.close-btn {
+  position: absolute; 
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  color: #555;
+  font-size: 1.5rem; 
+  cursor: pointer;
+  transition: color 0.3s ease; 
+}
+
+.close-btn:hover {
+  color: #d32f2f; 
+}
+
+.hero-section {
+  background: linear-gradient(135deg, #e3f2fd, #90caf9);
+  min-height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #1976d2;
+}
+
+.features-section .feature-card {
+  margin-bottom: 20px;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.login-type-toggle {
+  margin-bottom: 1rem;
+}
+
+.login-type-toggle button {
+  margin-right: 10px;
+}
+ */
+
+/* Styles for LoginSelector Component */
+
+.hero-section {
+  background-color: #f8f9fa;
+  padding: 5rem 0;
+}
+
+.features-section,
+.testimonials-section {
+  background-color: #ffffff;
+}
+.feature-card,
+.testimonial-card {
+  border: none;
+}
+
+.testimonial-card {
+  background-color: #549ad6;
+  padding: 1rem;
+  border-radius: 8px;
+  color: #ffffff;
+}
+.login-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+/* Login Form Container */
+.login-form-container {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 500px;
+  max-width: 90%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.5rem;
+  color: #555;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+  color: #ff6b6b;
+}
+
+/* Login Type Toggle Buttons */
+.login-type-toggle {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.login-type-toggle button {
+  margin: 0 0.5rem;
+}
+
+/* Error Message */
+.text-danger {
+  color: #ff6b6b !important;
+}
+
+/* Form Control Styling */
+.form-control {
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 8px;
+}
+
+button[type="submit"] {
+  background-color: #007bff;
+  border: none;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.testimonials-section {
+  background-color: #f1f9ff;
+  padding: 5rem 0;
+}
+
+.testimonial-card {
+  background-color: #287bc5;
+  padding: 1rem;
+  border-radius: 8px;
+  color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }

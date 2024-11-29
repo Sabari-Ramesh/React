@@ -420,7 +420,7 @@ import {
   Alert,
 } from "react-bootstrap";
 import { UserContext } from "../Login/LoginSelector";
-//import UserContext from "../contexts/UserContext"
+//import {UserContext} from "../contexts/UserProvider "
 import "./update.css";
 
 export default class Update extends Component {
@@ -848,7 +848,11 @@ export default class Update extends Component {
             <Button variant="primary" onClick={this.handleUpdateMeal}>
               Update Meal
             </Button>
-            <Button variant="danger" onClick={this.handleDeleteMeal}>
+            <Button
+              variant="danger"
+              style={{ margin: "30px" }}
+              onClick={this.handleDeleteMeal}
+            >
               Delete Meal
             </Button>
           </Form>

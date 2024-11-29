@@ -4,34 +4,38 @@
 // import logo from "./applicationlogo.png";
 
 // // NAVBAR CONTENT
-
-// class NavBar extends Component {
+// export default class NavBar extends Component {
 //   render() {
-//     const {username}=this.props;
+//     const { userName } = this.props;
+
 //     return (
 //       <Container fluid>
-//         <nav className="text-white" style={{ backgroundColor: "#f3a683" }}>
-//           <Row className="text-center" style={{ height: "50px" }}>
-//             <Col
-//               className="d-flex align-items-center"
-//               style={{ backgroundColor: "#f3a683" }}
-//               xs={3}
-//             >
+//         <nav
+//           className="text-white"
+//           style={{ backgroundColor: "#8b57ea", width: "201vh" }}
+//         >
+//           <Row className="align-items-center" style={{ height: "70px" }}>
+//             {/* Logo Section */}
+//             <Col xs={3}>
 //               <img
 //                 src={logo}
 //                 alt="LOGO"
 //                 style={{
-//                   height: "70px",
+//                   height: "60px",
 //                   width: "auto",
-//                   marginTop: "-10px",
 //                   marginLeft: "20px",
 //                 }}
 //               />
 //             </Col>
 
-//             <Col>
-//               <p className="text-center fs-5 fw-bold">Diet Tracker Application</p>
-//               <p className="text-end fs-5 fw-bold">Welcome {username} !!!</p>
+//             {/* Title Section */}
+//             <Col className="text-center">
+//               <p className="fs-5 fw-bold m-0">Diet Tracker Application</p>
+//             </Col>
+
+//             {/* Username Section */}
+//             <Col xs={3} className="text-end pe-4">
+//               <p className="fs-6 fw-bold m-0">Welcome, {userName}!</p>
 //             </Col>
 //           </Row>
 //         </nav>
@@ -40,49 +44,103 @@
 //   }
 // }
 
-// export default NavBar;
+
+
+//React Context
+
+// import React, { Component } from "react";
+// import { Row, Col, Container } from "react-bootstrap";
+// import { UserContext } from "../Login/LoginSelector"
+// import "./main.css";
+// import logo from "./applicationlogo.png";
+
+// export default class NavBar extends Component {
+//   static contextType = UserContext; // Set contextType to access UserContext
+
+//   render() {
+//     const { userName, username } = this.context || {};  // Destructure userName from context
+//     const displayName = userName || username; // Use whichever is available
+
+//     return (
+//       <Container fluid>
+//         <nav
+//           className="text-white"
+//           style={{ backgroundColor: "#8b57ea", width: "201vh" }}
+//         >
+//           <Row className="align-items-center" style={{ height: "70px" }}>
+//             {/* Logo Section */}
+//             <Col xs={3}>
+//               <img
+//                 src={logo}
+//                 alt="LOGO"
+//                 style={{
+//                   height: "60px",
+//                   width: "auto",
+//                   marginLeft: "20px",
+//                 }}
+//               />
+//             </Col>
+
+//             {/* Title Section */}
+//             <Col className="text-center">
+//               <p className="fs-5 fw-bold m-0">Diet Tracker Application</p>
+//             </Col>
+
+//             {/* Username Section */}
+//             <Col xs={3} className="text-end pe-4">
+//               <p className="fs-6 fw-bold m-0">Welcome, {displayName}!</p>
+//             </Col>
+//           </Row>
+//         </nav>
+//       </Container>
+//     );
+//   }
+// }
+
+
 
 import React, { Component } from "react";
-import { Row, Col, Container } from "react-bootstrap";
+import { Row, Col, Container, Navbar } from "react-bootstrap";
+import { UserContext } from "../Login/LoginSelector";
 import "./main.css";
 import logo from "./applicationlogo.png";
 
-// NAVBAR CONTENT
-class NavBar extends Component {
+export default class NavBar extends Component {
+  static contextType = UserContext; // Set contextType to access UserContext
+
   render() {
-    const { userName } = this.props;
+    const { userName, username } = this.context || {};
+    const displayName = userName || username;
 
     return (
-      <Container fluid>
-        <nav className="text-white" style={{ backgroundColor: "#8b57ea" }}>
-          <Row className="align-items-center" style={{ height: "70px" }}>
+      <Navbar bg="dark" variant="dark" expand="lg" className="custom-navbar">
+        <Container fluid>
+          <Row className="w-100 align-items-center">
             {/* Logo Section */}
             <Col xs={3}>
               <img
                 src={logo}
                 alt="LOGO"
-                style={{
-                  height: "60px",
-                  width: "auto",
-                  marginLeft: "20px",
-                }}
+                className="navbar-logo"
               />
             </Col>
 
             {/* Title Section */}
             <Col className="text-center">
-              <p className="fs-5 fw-bold m-0">Diet Tracker Application</p>
+              <Navbar.Brand className="fs-5 fw-bold text-white m-0">
+                Diet Tracker Application
+              </Navbar.Brand>
             </Col>
 
             {/* Username Section */}
             <Col xs={3} className="text-end pe-4">
-              <p className="fs-6 fw-bold m-0">Welcome, {userName}!</p>
+              <p className="fs-6 fw-bold m-0 text-white">
+                Welcome, {displayName}!
+              </p>
             </Col>
           </Row>
-        </nav>
-      </Container>
+        </Container>
+      </Navbar>
     );
   }
 }
-
-export default NavBar;
