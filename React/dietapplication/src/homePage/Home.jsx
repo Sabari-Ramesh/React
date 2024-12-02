@@ -16,7 +16,7 @@ class DietStore extends Component {
         id: 1,
         name: "Apple",
         category: "Fruits",
-        price: "$2",
+        price: "₹2",
         image: greenapple,
         benefits: "Rich in fiber and vitamins.",
       },
@@ -24,7 +24,7 @@ class DietStore extends Component {
         id: 2,
         name: "Broccoli",
         category: "Vegetables",
-        price: "$3",
+        price: "₹3",
         image: broccoli,
         benefits: "High in vitamins and antioxidants.",
       },
@@ -32,7 +32,7 @@ class DietStore extends Component {
         id: 3,
         name: "Protein Powder",
         category: "Supplements",
-        price: "$25",
+        price: "₹25",
         image: protein,
         benefits: "Supports muscle growth and recovery.",
       },
@@ -40,7 +40,7 @@ class DietStore extends Component {
         id: 4,
         name: "Spinach",
         category: "Vegetables",
-        price: "$2",
+        price: "₹2",
         image: spinach,
         benefits: "Rich in iron and fiber.",
       },
@@ -48,7 +48,7 @@ class DietStore extends Component {
         id: 5,
         name: "Multivitamins",
         category: "Supplements",
-        price: "$15",
+        price: "₹15",
         image: multivitamin,
         benefits: "Boosts immunity and energy.",
       },
@@ -56,16 +56,16 @@ class DietStore extends Component {
         id: 6,
         name: "Tender Coconut",
         category: "Fruits",
-        price: "$1.5",
+        price: "₹1.5",
         image: tender,
         benefits: "Hydrates and replenishes electrolytes.",
       },
     ],
-    cart: [],
+   
   };
 
   render() {
-    const { products, cart } = this.state;
+    const { products } = this.state;
 
     return (
       <Container fluid>

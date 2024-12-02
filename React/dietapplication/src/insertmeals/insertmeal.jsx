@@ -13,7 +13,7 @@ class Insert extends Component {
       mealData: {
         meal: null,
         mealDate: null,
-        userid: "", 
+        userid: "",
         foodName: null,
         quantity: null,
         calories: null,
@@ -38,7 +38,6 @@ class Insert extends Component {
   }
 
   componentDidMount() {
-    
     const userId = this.context?.userId;
     if (userId) {
       this.setState((prevState) => ({
@@ -104,6 +103,14 @@ class Insert extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const newErrors = {};
+
+    const { quantity, calories, protein, carbs, vitamins } =
+      this.state.mealData;
+
+    if (quantity < calories + protein + carbs + vitamins) {
+      newErrors.quantity =
+        "Quantity should be greater than or equal to the sum of calories, protein, carbs, and vitamins";
+    }
 
     Object.keys(this.state.mealData).forEach((key) => {
       if (!this.state.mealData[key] && key !== "userid") {
@@ -188,11 +195,11 @@ class Insert extends Component {
 
         <h3 className="mb-4 text-center">Insert Meal Details</h3>
         <Form onSubmit={this.handleSubmit}>
-                  <Row className="mb-3">
-             <Col xs={12} md={6}>
-               <Form.Group controlId="meal">
-                 <Form.Label>Meal Type</Form.Label>
-                 <Form.Control
+          <Row className="mb-3">
+            <Col xs={12} md={6}>
+              <Form.Group controlId="meal">
+                <Form.Label>Meal Type</Form.Label>
+                <Form.Control
                   as="select"
                   name="meal"
                   value={mealData.meal || ""}
@@ -368,6 +375,3 @@ class Insert extends Component {
 }
 
 export default Insert;
-
-
-

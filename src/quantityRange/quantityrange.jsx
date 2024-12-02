@@ -178,7 +178,7 @@
 import React, { Component } from "react";
 import { Form, Button, Table, Row, Col, Container } from "react-bootstrap";
 import { UserContext } from "../Login/LoginSelector";
-//import UserContext from "../contexts/UserContext"
+//import {UserContext} from "../contexts/UserProvider "
 
 export default class QuantityRange extends Component {
   static contextType = UserContext;

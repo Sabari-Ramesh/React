@@ -1,15 +1,24 @@
 import React, { Component } from "react";
-import { Table, Container, Alert } from "react-bootstrap";
+import {
+  Table,
+  Container,
+  Alert,
+  Form,
+  Button,
+  Row,
+  Col,
+} from "react-bootstrap";
 import { UserContext } from "../Login/LoginSelector";
-//import UserContext from "../contexts/UserContext"
 
 export default class FindByUserId extends Component {
   static contextType = UserContext;
+
   constructor(props) {
     super(props);
     this.state = {
       mealDetails: null,
       error: null,
+      fileType: "csv", // Default file type
     };
   }
 
@@ -25,14 +34,13 @@ export default class FindByUserId extends Component {
         if (contentType && contentType.includes("application/json")) {
           return response.json();
         } else {
-          return response.text(); // treat it as text
+          return response.text(); // Treat as text if not JSON
         }
       })
       .then((data) => {
         if (typeof data === "string" && data === "No Details Available") {
           this.setState({ error: data });
         } else {
-          // Set meal details if data is valid JSON
           this.setState({ mealDetails: data, error: null });
         }
       })
@@ -41,15 +49,60 @@ export default class FindByUserId extends Component {
       });
   };
 
+  handleFileTypeChange = (e) => {
+    this.setState({ fileType: e.target.value });
+  };
+
+  handleDownload = () => {
+    const userId = this.context?.userId;
+    const { fileType } = this.state;
+
+    if (!userId) {
+      this.setState({ error: "User ID is required for downloading." });
+      return;
+    }
+
+    const downloadUrl = `http://localhost:8080/export/meal-details?format=${fileType}&id=${userId}`;
+    window.open(downloadUrl, "_blank");
+  };
+
   render() {
-    const { mealDetails, error } = this.state;
+    const { mealDetails, error, fileType } = this.state;
 
     return (
       <Container className="mt-4">
-        <h2 className="text-center">Find Meal Details </h2>
-        {error ? (
-          <Alert variant="danger">Error: {error}</Alert>
-        ) : mealDetails ? (
+        <h2 className="text-center">Find Meal Details</h2>
+
+        {/* File Type Selection and Download */}
+        <Form className="mb-3">
+          <Row>
+            <Col xs={6} md={4}>
+              <Form.Group>
+                <Form.Label>Select File Type</Form.Label>
+                <Form.Control
+                  as="select"
+                  value={fileType}
+                  onChange={this.handleFileTypeChange}
+                >
+                  <option value="csv">CSV</option>
+                  <option value="excel">Excel</option>
+                  <option value="pdf">PDF</option>
+                </Form.Control>
+              </Form.Group>
+            </Col>
+            <Col xs={12} md={6} className="d-flex align-items-end">
+              <Button variant="primary" onClick={this.handleDownload}>
+                Download
+              </Button>
+            </Col>
+          </Row>
+        </Form>
+
+        {/* Error Alert */}
+        {error && <Alert variant="danger">Error: {error}</Alert>}
+
+        {/* Meal Details Table */}
+        {mealDetails ? (
           <Table striped bordered hover responsive className="mt-4">
             <thead>
               <tr>

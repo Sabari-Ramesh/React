@@ -1,45 +1,18 @@
-/* Navbar Styling */
-.navbar-dark .navbar-brand {
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-  
-  .hero-section {
-    background-color: #f8f9fa;
-    padding: 60px 20px;
-    color: #333;
-  }
-  
-  .hero-section h1 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-  }
-  
-  .hero-section p {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-  }
-  
-  .features-section {
-    background-color: #f0f2f5;
-    padding: 40px 20px;
-  }
-  
-  .feature-card {
-    background-color: #ffffff;
-    border: none;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-  }
-  
-  .feature-card .card-title {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #007bff;
-  }
-  
-  .feature-card .card-text {
-    font-size: 1rem;
-    color: #555;
-  }
-  
+/* WelcomePage.css */
+.product-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product-card img {
+  height: 200px;
+  object-fit: cover;
+}
+
+.product-card .card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

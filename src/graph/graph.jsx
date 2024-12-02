@@ -92,7 +92,7 @@ export default class MealGraph extends Component {
         case "Week":
           const startOfWeek = new Date(
             date.setDate(date.getDate() - date.getDay())
-          ); 
+          ); // Start of the week
           periodKey = startOfWeek.toISOString().split("T")[0]; // Group by week start
           break;
         case "Month":

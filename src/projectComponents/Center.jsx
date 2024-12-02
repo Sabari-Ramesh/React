@@ -1,286 +1,3 @@
-// Center.js
-
-// import React, { Component } from "react";
-// import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-// import { Container, Row, Col, Button } from "react-bootstrap";
-// import Insert from "../insertmeals/insertmeal";
-// import Update from "../update/update";
-// import FindAll from "../findall/findall";
-// import FindAllUsers from "../FindAllUsers/FindAllUsers";
-// import Advertisement from "./advertisement";
-// import PageNotFound from "./pageNotFound";
-// import FindById from "../findbyid/findbyid";
-// import FindByUserId from "../findbyuserid/findbyuserid";
-// import FindByDates from "../findByDate/findByDate";
-// import GroupByCity from "../groupBYCity/groupbycity";
-// import UserWithMealDetail from "../userWithMealDetail/UserWithMealDetail";
-// import QuantityRange from "../quantityRange/quantityrange";
-// import FindCalories from "../findCalories/findCalories";
-// import "./center.css";
-
-// class Center extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       activeRoute: "/",
-//     };
-//   }
-
-//   handleButtonClick = (route) => {
-//     this.setState({ activeRoute: route });
-//   };
-
-//   render() {
-//     const { activeRoute } = this.state;
-//     const { user } = this.props;
-//     const userId = user?.userId || user?.adminId;
-//     const isAdmin = Boolean(user?.adminRole);
-
-//     return (
-//       <Router>
-//         <Container fluid className="main-container">
-//           <Row>
-//             <Col xs={12} lg={9}>
-//               <Row>
-//                 <Col
-//                   xs={3}
-//                   className="text-white p-3 rounded menu-container"
-//                   style={{ backgroundColor: "#b4ceff" }}
-//                 >
-//                   <div className="menu">
-//                     {/* Conditional Buttons based on user role */}
-//                     {isAdmin ? (
-//                       <>
-//                         {/* Admin Menu Options */}
-//                         <Link to="/find-all">
-//                           <Button
-//                             variant={
-//                               activeRoute === "/find-all" ? "primary" : "light"
-//                             }
-//                             className="w-100 mb-2"
-//                             onClick={() => this.handleButtonClick("/find-all")}
-//                           >
-//                             Find All Meal Details
-//                           </Button>
-//                         </Link>
-//                         <Link to="/find-all-users">
-//                           <Button
-//                             variant={
-//                               activeRoute === "/delete" ? "primary" : "light"
-//                             }
-//                             className="w-100 mb-2"
-//                             onClick={() => this.handleButtonClick("/delete")}
-//                           >
-//                             Find All Users
-//                           </Button>
-//                         </Link>
-//                         <Link to="/findbyid">
-//                           <Button
-//                             variant={
-//                               activeRoute === "/findbyid" ? "primary" : "light"
-//                             }
-//                             className="w-100 mb-2"
-//                             onClick={() => this.handleButtonClick("/findbyid")}
-//                           >
-//                             Find By MealId
-//                           </Button>
-//                         </Link>
-//                         <Link to="/findbyuserdaterange">
-//                           <Button
-//                             variant={
-//                               activeRoute === "/findbyuserdaterange"
-//                                 ? "primary"
-//                                 : "light"
-//                             }
-//                             className="w-100 mb-2"
-//                             onClick={() =>
-//                               this.handleButtonClick("/findbyuserdaterange")
-//                             }
-//                           >
-//                             Find By User By Date
-//                           </Button>
-//                         </Link>
-//                         <Link to="/groupbycity">
-//                           <Button
-//                             variant={
-//                               activeRoute === "/groupbycity"
-//                                 ? "primary"
-//                                 : "light"
-//                             }
-//                             className="w-100 mb-2"
-//                             onClick={() =>
-//                               this.handleButtonClick("/groupbycity")
-//                             }
-//                           >
-//                             Group By City
-//                           </Button>
-//                         </Link>
-
-//                         <Link to="/userwithdetails">
-//                           <Button
-//                             variant={
-//                               activeRoute === "/userwithdetails"
-//                                 ? "primary"
-//                                 : "light"
-//                             }
-//                             className="w-100 mb-2"
-//                             onClick={() =>
-//                               this.handleButtonClick("/userwithdetails")
-//                             }
-//                           >
-//                             User With Meal Details
-//                           </Button>
-//                         </Link>
-//                       </>
-//                     ) : (
-//                       <>
-//                         {/* User Menu Options */}
-//                         <Link to="/insert">
-//                           <Button
-//                             variant={
-//                               activeRoute === "/insert" ? "primary" : "light"
-//                             }
-//                             className="w-100 mb-2"
-//                             onClick={() => this.handleButtonClick("/insert")}
-//                           >
-//                             Insert Details
-//                           </Button>
-//                         </Link>
-//                         <Link to="/update">
-//                           <Button
-//                             variant={
-//                               activeRoute === "/update" ? "primary" : "light"
-//                             }
-//                             className="w-100 mb-2"
-//                             onClick={() => this.handleButtonClick("/update")}
-//                           >
-//                             Update / Delete
-//                           </Button>
-//                         </Link>
-//                         <Link to="/findbyuserid">
-//                           <Button
-//                             variant={
-//                               activeRoute === "/findbyuserid"
-//                                 ? "primary"
-//                                 : "light"
-//                             }
-//                             className="w-100 mb-2"
-//                             onClick={() =>
-//                               this.handleButtonClick("/findbyuserid")
-//                             }
-//                           >
-//                             Find By UserId
-//                           </Button>
-//                         </Link>
-//                         <Link to="/findbyquantiyRange">
-//                           <Button
-//                             variant={
-//                               activeRoute === "/findbyquantiyRange"
-//                                 ? "primary"
-//                                 : "light"
-//                             }
-//                             className="w-100 mb-2"
-//                             onClick={() =>
-//                               this.handleButtonClick("/findbyquantiyRange")
-//                             }
-//                           >
-//                             Find By Quantity Range
-//                           </Button>
-//                         </Link>
-//                         <Link to="/findCalories">
-//                           <Button
-//                             variant={
-//                               activeRoute === "/findCalories"
-//                                 ? "primary"
-//                                 : "light"
-//                             }
-//                             className="w-100 mb-2"
-//                             onClick={() =>
-//                               this.handleButtonClick("/findCalories")
-//                             }
-//                           >
-//                             Find Calories
-//                           </Button>
-//                         </Link>
-//                       </>
-//                     )}
-//                   </div>
-//                 </Col>
-
-//                 {/* MAIN CONTENT */}
-//                 <Col xs={9} className="bg-light text-dark p-3 main-content-col">
-//                   <Routes>
-//                     {/* Render routes based on user role */}
-//                     {isAdmin ? (
-//                       <>
-//                         {/* Admin Routes */}
-//                         <Route path="/find-all" element={<FindAll />} />
-//                         <Route
-//                           path="/find-all-users"
-//                           element={<FindAllUsers />}
-//                         />
-//                         <Route path="/findbyid" element={<FindById />} />
-//                         <Route
-//                           path="/findbyuserdaterange"
-//                           element={<FindByDates />}
-//                         />
-//                         <Route path="/groupbycity" element={<GroupByCity />} />
-//                         <Route
-//                           path="/userwithdetails"
-//                           element={<UserWithMealDetail />}
-//                         />
-//                       </>
-//                     ) : (
-//                       <>
-//                         {/* User Routes */}
-//                         <Route
-//                           path="/insert"
-//                           element={<Insert userId={userId} />}
-//                         />
-//                         <Route
-//                           path="/update"
-//                           element={<Update userId={userId} />}
-//                         />
-//                         <Route
-//                           path="/findbyuserid"
-//                           element={<FindByUserId userId={userId} />}
-//                         />
-//                         <Route
-//                           path="/findbyquantiyRange"
-//                           element={<QuantityRange userId={userId} />}
-//                         />
-//                         <Route
-//                           path="/findCalories"
-//                           element={<FindCalories userId={userId} />}
-//                         />
-//                       </>
-//                     )}
-//                     <Route path="/" element={<div>Select a menu option</div>} />
-//                     {/* Default Route */}
-//                     <Route path="*" element={<PageNotFound />} />
-//                   </Routes>
-//                 </Col>
-//               </Row>
-//             </Col>
-
-//             {/* Advertisement Column */}
-//             <Col
-//               xs={12}
-//               lg={3}
-//               className="p-4"
-//               style={{ background: "#cccfd4" }}
-//             >
-//               <Advertisement />
-//             </Col>
-//           </Row>
-//         </Container>
-//       </Router>
-//     );
-//   }
-// }
-
-// export default Center;
-
 //-------------------------------------------------------------------------------------------------------
 
 //WITH React Context
@@ -562,272 +279,7 @@
 
 //--------------------------------------------------------------------
 
-//With HomePage And Color Change
 
-// import React, { Component } from "react";
-// import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-// import { Container, Row, Col, Button } from "react-bootstrap";
-// import { UserContext } from "../Login/LoginSelector"; // Import UserContext
-// import Insert from "../insertmeals/insertmeal";
-// import Update from "../update/update";
-// import FindAll from "../findall/findall";
-// import FindAllUsers from "../FindAllUsers/FindAllUsers";
-// import Advertisement from "./advertisement";
-// import PageNotFound from "./pageNotFound";
-// import FindById from "../findbyid/findbyid";
-// import FindByUserId from "../findbyuserid/findbyuserid";
-// import FindByDates from "../findByDate/findByDate";
-// import GroupByCity from "../groupBYCity/groupbycity";
-// import UserWithMealDetail from "../userWithMealDetail/UserWithMealDetail";
-// import QuantityRange from "../quantityRange/quantityrange";
-// import FindCalories from "../findCalories/findCalories";
-// import "./center.css";
-// import Home from "../homePage/Home";
-
-// class Center extends Component {
-//   static contextType = UserContext;
-
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       activeRoute: "/home",
-//     };
-//   }
-
-//   handleButtonClick = (route) => {
-//     this.setState({ activeRoute: route });
-//   };
-
-//   render() {
-//     const { activeRoute } = this.state;
-//     const user = this.context;
-//     const isAdmin = Boolean(user?.adminRole);
-
-//     return (
-//       <Router>
-//         <Container fluid className="main-container">
-//           <Row>
-//             <Col xs={12} lg={9}>
-//               <Row>
-//                 <Col xs={3} className="text-white p-3 rounded menu-container">
-//                   <div className="menu">
-//                     {isAdmin ? (
-//                       <>
-//                         <Link to="/find-all">
-//                           <Button
-//                             variant={
-//                               activeRoute === "/find-all" ? "primary" : "light"
-//                             }
-//                             className="w-100 mb-2"
-//                             onClick={() => this.handleButtonClick("/find-all")}
-//                           >
-//                             Find All Meal Details
-//                           </Button>
-//                         </Link>
-//                         <Link to="/find-all-users">
-//                           <Button
-//                             variant={
-//                               activeRoute === "/find-all-users"
-//                                 ? "primary"
-//                                 : "light"
-//                             }
-//                             className="w-100 mb-2"
-//                             onClick={() =>
-//                               this.handleButtonClick("/find-all-users")
-//                             }
-//                           >
-//                             Find All Users
-//                           </Button>
-//                         </Link>
-//                         <Link to="/findbyid">
-//                           <Button
-//                             variant={
-//                               activeRoute === "/findbyid" ? "primary" : "light"
-//                             }
-//                             className="w-100 mb-2"
-//                             onClick={() => this.handleButtonClick("/findbyid")}
-//                           >
-//                             Find By MealId
-//                           </Button>
-//                         </Link>
-//                         <Link to="/findbyuserdaterange">
-//                           <Button
-//                             variant={
-//                               activeRoute === "/findbyuserdaterange"
-//                                 ? "primary"
-//                                 : "light"
-//                             }
-//                             className="w-100 mb-2"
-//                             onClick={() =>
-//                               this.handleButtonClick("/findbyuserdaterange")
-//                             }
-//                           >
-//                             Find By User By Date
-//                           </Button>
-//                         </Link>
-//                         <Link to="/groupbycity">
-//                           <Button
-//                             variant={
-//                               activeRoute === "/groupbycity"
-//                                 ? "primary"
-//                                 : "light"
-//                             }
-//                             className="w-100 mb-2"
-//                             onClick={() =>
-//                               this.handleButtonClick("/groupbycity")
-//                             }
-//                           >
-//                             Group By City
-//                           </Button>
-//                         </Link>
-//                         <Link to="/userwithdetails">
-//                           <Button
-//                             variant={
-//                               activeRoute === "/userwithdetails"
-//                                 ? "primary"
-//                                 : "light"
-//                             }
-//                             className="w-100 mb-2"
-//                             onClick={() =>
-//                               this.handleButtonClick("/userwithdetails")
-//                             }
-//                           >
-//                             User With Meal Details
-//                           </Button>
-//                         </Link>
-//                       </>
-//                     ) : (
-//                       <>
-//                         <Link to="/insert">
-//                           <Button
-//                             variant={
-//                               activeRoute === "/insert" ? "primary" : "light"
-//                             }
-//                             className="w-100 mb-2"
-//                             onClick={() => this.handleButtonClick("/insert")}
-//                           >
-//                             Insert Details
-//                           </Button>
-//                         </Link>
-//                         <Link to="/update">
-//                           <Button
-//                             variant={
-//                               activeRoute === "/update" ? "primary" : "light"
-//                             }
-//                             className="w-100 mb-2"
-//                             onClick={() => this.handleButtonClick("/update")}
-//                           >
-//                             Update / Delete
-//                           </Button>
-//                         </Link>
-//                         <Link to="/findbyuserid">
-//                           <Button
-//                             variant={
-//                               activeRoute === "/findbyuserid"
-//                                 ? "primary"
-//                                 : "light"
-//                             }
-//                             className="w-100 mb-2"
-//                             onClick={() =>
-//                               this.handleButtonClick("/findbyuserid")
-//                             }
-//                           >
-//                             Find By UserId
-//                           </Button>
-//                         </Link>
-//                         <Link to="/findbyquantiyRange">
-//                           <Button
-//                             variant={
-//                               activeRoute === "/findbyquantiyRange"
-//                                 ? "primary"
-//                                 : "light"
-//                             }
-//                             className="w-100 mb-2"
-//                             onClick={() =>
-//                               this.handleButtonClick("/findbyquantiyRange")
-//                             }
-//                           >
-//                             Find By Quantity Range
-//                           </Button>
-//                         </Link>
-//                         <Link to="/findCalories">
-//                           <Button
-//                             variant={
-//                               activeRoute === "/findCalories"
-//                                 ? "primary"
-//                                 : "light"
-//                             }
-//                             className="w-100 mb-2"
-//                             onClick={() =>
-//                               this.handleButtonClick("/findCalories")
-//                             }
-//                           >
-//                             Find Calories
-//                           </Button>
-//                         </Link>
-//                       </>
-//                     )}
-//                   </div>
-//                 </Col>
-//                 <Col xs={9} className="main-content-col">
-//                   <Routes>
-//                     {isAdmin ? (
-//                       <>
-//                         <Route path="/find-all" element={<FindAll />} />
-//                         <Route
-//                           path="/find-all-users"
-//                           element={<FindAllUsers />}
-//                         />
-//                         <Route path="/findbyid" element={<FindById />} />
-//                         <Route
-//                           path="/findbyuserdaterange"
-//                           element={<FindByDates />}
-//                         />
-//                         <Route path="/groupbycity" element={<GroupByCity />} />
-//                         <Route
-//                           path="/userwithdetails"
-//                           element={<UserWithMealDetail />}
-//                         />
-//                       </>
-//                     ) : (
-//                       <>
-//                         <Route path="/insert" element={<Insert />} />
-//                         <Route path="/update" element={<Update />} />
-//                         {/* userId={userId}  */}
-//                         <Route
-//                           path="/findbyuserid"
-//                           element={<FindByUserId />}
-//                         />
-//                         {/* userId={userId} */}
-//                         <Route
-//                           path="/findbyquantiyRange"
-//                           element={<QuantityRange />}
-//                         />
-//                         {/* userId={userId} */}
-//                         <Route
-//                           path="/findCalories"
-//                           element={<FindCalories />}
-//                         />
-//                         {/* userId={userId} */}
-//                       </>
-//                     )}
-//                     <Route path="/home" element={<Home />} />
-//                     <Route path="*" element={<PageNotFound />} />
-//                   </Routes>
-//                 </Col>
-//               </Row>
-//             </Col>
-//             <Col xs={12} lg={3} className="p-4 advertisement-col">
-//               <Advertisement />
-//             </Col>
-//           </Row>
-//         </Container>
-//       </Router>
-//     );
-//   }
-// }
-
-// export default Center;
 
 ///////--------------------------------------------------->LogOut
 
@@ -848,37 +300,38 @@ import UserWithMealDetail from "../userWithMealDetail/UserWithMealDetail";
 import QuantityRange from "../quantityRange/quantityrange";
 import FindCalories from "../findCalories/findCalories";
 import { UserContext } from "../Login/LoginSelector"; // Import UserContext
+//import {UserContext} from "../contexts/UserProvider "
 import "./center.css";
+import MealGraph from "../graph/graph";
+import DietStore from "../homePage/Home"
 
 class Center extends Component {
   constructor(props) {
+    
     super(props);
+  
+
     this.state = {
-      activeRoute: "/",
+      activeRoute: "/", // Set the initial route based on the role
     };
   }
 
-  static contextType = UserContext;  // Access the UserContext in class component
+  static contextType = UserContext;
 
   handleButtonClick = (route) => {
     this.setState({ activeRoute: route });
   };
 
   handleLogout = () => {
-    // Clear user session or any stored user data (localStorage, sessionStorage, etc.)
-    localStorage.removeItem("user");  // Assuming user info is stored in localStorage
+    localStorage.removeItem("user");
     localStorage.removeItem("role");
-
-    // After logout, redirect to LoginSelector page or Login page
-    window.location.href = "/login"; // Or navigate to the login route
+    window.location.href = "/";
   };
 
   render() {
-    // Destructure activeRoute from this.state and user from this.context
     const { activeRoute } = this.state;
     const user = this.context;
-    const isAdmin = Boolean(user?.adminRole); // Check if the user is an admin
-
+    const isAdmin = Boolean(user?.adminRole);
     return (
       <Router>
         <Container fluid className="main-container">
@@ -896,7 +349,9 @@ class Center extends Component {
                       <>
                         <Link to="/find-all">
                           <Button
-                            variant={activeRoute === "/find-all" ? "primary" : "light"}
+                            variant={
+                              activeRoute === "/find-all" ? "primary" : "light"
+                            }
                             className="w-100 mb-2"
                             onClick={() => this.handleButtonClick("/find-all")}
                           >
@@ -905,16 +360,24 @@ class Center extends Component {
                         </Link>
                         <Link to="/find-all-users">
                           <Button
-                            variant={activeRoute === "/find-all-users" ? "primary" : "light"}
+                            variant={
+                              activeRoute === "/find-all-users"
+                                ? "primary"
+                                : "light"
+                            }
                             className="w-100 mb-2"
-                            onClick={() => this.handleButtonClick("/find-all-users")}
+                            onClick={() =>
+                              this.handleButtonClick("/find-all-users")
+                            }
                           >
                             Find All Users
                           </Button>
                         </Link>
                         <Link to="/findbyid">
                           <Button
-                            variant={activeRoute === "/findbyid" ? "primary" : "light"}
+                            variant={
+                              activeRoute === "/findbyid" ? "primary" : "light"
+                            }
                             className="w-100 mb-2"
                             onClick={() => this.handleButtonClick("/findbyid")}
                           >
@@ -923,27 +386,45 @@ class Center extends Component {
                         </Link>
                         <Link to="/findbyuserdaterange">
                           <Button
-                            variant={activeRoute === "/findbyuserdaterange" ? "primary" : "light"}
+                            variant={
+                              activeRoute === "/findbyuserdaterange"
+                                ? "primary"
+                                : "light"
+                            }
                             className="w-100 mb-2"
-                            onClick={() => this.handleButtonClick("/findbyuserdaterange")}
+                            onClick={() =>
+                              this.handleButtonClick("/findbyuserdaterange")
+                            }
                           >
                             Find By User By Date
                           </Button>
                         </Link>
                         <Link to="/groupbycity">
                           <Button
-                            variant={activeRoute === "/groupbycity" ? "primary" : "light"}
+                            variant={
+                              activeRoute === "/groupbycity"
+                                ? "primary"
+                                : "light"
+                            }
                             className="w-100 mb-2"
-                            onClick={() => this.handleButtonClick("/groupbycity")}
+                            onClick={() =>
+                              this.handleButtonClick("/groupbycity")
+                            }
                           >
                             Group By City
                           </Button>
                         </Link>
                         <Link to="/userwithdetails">
                           <Button
-                            variant={activeRoute === "/userwithdetails" ? "primary" : "light"}
+                            variant={
+                              activeRoute === "/userwithdetails"
+                                ? "primary"
+                                : "light"
+                            }
                             className="w-100 mb-2"
-                            onClick={() => this.handleButtonClick("/userwithdetails")}
+                            onClick={() =>
+                              this.handleButtonClick("/userwithdetails")
+                            }
                           >
                             User With Meal Details
                           </Button>
@@ -953,7 +434,9 @@ class Center extends Component {
                       <>
                         <Link to="/insert">
                           <Button
-                            variant={activeRoute === "/insert" ? "primary" : "light"}
+                            variant={
+                              activeRoute === "/insert" ? "primary" : "light"
+                            }
                             className="w-100 mb-2"
                             onClick={() => this.handleButtonClick("/insert")}
                           >
@@ -962,7 +445,9 @@ class Center extends Component {
                         </Link>
                         <Link to="/update">
                           <Button
-                            variant={activeRoute === "/update" ? "primary" : "light"}
+                            variant={
+                              activeRoute === "/update" ? "primary" : "light"
+                            }
                             className="w-100 mb-2"
                             onClick={() => this.handleButtonClick("/update")}
                           >
@@ -971,29 +456,58 @@ class Center extends Component {
                         </Link>
                         <Link to="/findbyuserid">
                           <Button
-                            variant={activeRoute === "/findbyuserid" ? "primary" : "light"}
+                            variant={
+                              activeRoute === "/findbyuserid"
+                                ? "primary"
+                                : "light"
+                            }
                             className="w-100 mb-2"
-                            onClick={() => this.handleButtonClick("/findbyuserid")}
+                            onClick={() =>
+                              this.handleButtonClick("/findbyuserid")
+                            }
                           >
                             Find By UserId
                           </Button>
                         </Link>
                         <Link to="/findbyquantiyRange">
                           <Button
-                            variant={activeRoute === "/findbyquantiyRange" ? "primary" : "light"}
+                            variant={
+                              activeRoute === "/findbyquantiyRange"
+                                ? "primary"
+                                : "light"
+                            }
                             className="w-100 mb-2"
-                            onClick={() => this.handleButtonClick("/findbyquantiyRange")}
+                            onClick={() =>
+                              this.handleButtonClick("/findbyquantiyRange")
+                            }
                           >
                             Find By Quantity Range
                           </Button>
                         </Link>
                         <Link to="/findCalories">
                           <Button
-                            variant={activeRoute === "/findCalories" ? "primary" : "light"}
+                            variant={
+                              activeRoute === "/findCalories"
+                                ? "primary"
+                                : "light"
+                            }
                             className="w-100 mb-2"
-                            onClick={() => this.handleButtonClick("/findCalories")}
+                            onClick={() =>
+                              this.handleButtonClick("/findCalories")
+                            }
                           >
                             Find Calories
+                          </Button>
+                        </Link>
+                        <Link to="/graph">
+                          <Button
+                            variant={
+                              activeRoute === "/graph" ? "primary" : "light"
+                            }
+                            className="w-100 mb-2"
+                            onClick={() => this.handleButtonClick("/graph")}
+                          >
+                            MealGraph
                           </Button>
                         </Link>
                       </>
@@ -1016,23 +530,42 @@ class Center extends Component {
                     {isAdmin ? (
                       <>
                         <Route path="/find-all" element={<FindAll />} />
-                        <Route path="/find-all-users" element={<FindAllUsers />} />
+                        <Route
+                          path="/find-all-users"
+                          element={<FindAllUsers />}
+                        />
                         <Route path="/findbyid" element={<FindById />} />
-                        <Route path="/findbyuserdaterange" element={<FindByDates />} />
+                        <Route
+                          path="/findbyuserdaterange"
+                          element={<FindByDates />}
+                        />
                         <Route path="/groupbycity" element={<GroupByCity />} />
-                        <Route path="/userwithdetails" element={<UserWithMealDetail />} />
+                        <Route
+                          path="/userwithdetails"
+                          element={<UserWithMealDetail />}
+                        />
                       </>
                     ) : (
                       <>
                         {/* User Routes */}
-                        <Route path="/insert" element={<Insert  />} />
-                        <Route path="/update" element={<Update  />} />
-                        <Route path="/findbyuserid" element={<FindByUserId  />} />
-                        <Route path="/findbyquantiyRange" element={<QuantityRange />} />
-                        <Route path="/findCalories" element={<FindCalories  />} />
+                        <Route path="/insert" element={<Insert />} />
+                        <Route path="/update" element={<Update />} />
+                        <Route
+                          path="/findbyuserid"
+                          element={<FindByUserId />}
+                        />
+                        <Route
+                          path="/findbyquantiyRange"
+                          element={<QuantityRange />}
+                        />
+                        <Route
+                          path="/findCalories"
+                          element={<FindCalories />}
+                        />
+                        <Route path="/graph" element={<MealGraph />} />
                       </>
                     )}
-                    <Route path="/" element={<div>Select a menu option</div>} />
+                    <Route path="/" element={<DietStore  />} />
                     <Route path="*" element={<PageNotFound />} />
                   </Routes>
                 </Col>
@@ -1040,7 +573,12 @@ class Center extends Component {
             </Col>
 
             {/* Advertisement Column */}
-            <Col xs={12} lg={3} className="p-4" style={{ background: "#cccfd4" }}>
+            <Col
+              xs={12}
+              lg={3}
+              className="p-4"
+              style={{ background: "#cccfd4" }}
+            >
               <Advertisement />
             </Col>
           </Row>
@@ -1051,3 +589,4 @@ class Center extends Component {
 }
 
 export default Center;
+

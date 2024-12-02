@@ -44,8 +44,6 @@
 //   }
 // }
 
-
-
 //React Context
 
 // import React, { Component } from "react";
@@ -97,13 +95,15 @@
 //   }
 // }
 
-
+///====================================================================================
 
 import React, { Component } from "react";
 import { Row, Col, Container, Navbar } from "react-bootstrap";
 import { UserContext } from "../Login/LoginSelector";
+//import {UserContext} from "../contexts/UserProvider "
 import "./main.css";
-import logo from "./applicationlogo.png";
+import logo from "./applelogo.png";
+
 
 export default class NavBar extends Component {
   static contextType = UserContext; // Set contextType to access UserContext
@@ -111,6 +111,7 @@ export default class NavBar extends Component {
   render() {
     const { userName, username } = this.context || {};
     const displayName = userName || username;
+    console.log(displayName);
 
     return (
       <Navbar bg="dark" variant="dark" expand="lg" className="custom-navbar">
@@ -118,11 +119,7 @@ export default class NavBar extends Component {
           <Row className="w-100 align-items-center">
             {/* Logo Section */}
             <Col xs={3}>
-              <img
-                src={logo}
-                alt="LOGO"
-                className="navbar-logo"
-              />
+              <img src={logo} alt="LOGO" className="navbar-logo" />
             </Col>
 
             {/* Title Section */}

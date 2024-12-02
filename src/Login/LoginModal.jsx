@@ -1,3 +1,95 @@
+// import React, { Component } from "react";
+// import { Form, Button } from "react-bootstrap";
+// import { FaTimes } from "react-icons/fa";
+
+// class LoginModal extends Component {
+//   render() {
+//     const {
+//       loginType,
+//       email,
+//       password,
+//       showLogin,
+//       emailError,
+//       passwordError,
+//       errorMessage,
+//       handleChange,
+//       handleSubmit,
+//       toggleLogin,
+//       handleLoginTypeSelect,
+//     } = this.props;
+
+//     if (!showLogin) return null;
+
+//     return (
+//       <div className="login-overlay">
+//         <div className="login-form-container">
+//           <Button
+//             variant="secondary"
+//             onClick={toggleLogin}
+//             className="close-btn"
+//           >
+//             <FaTimes />
+//           </Button>
+//           <h3 className="text-center">{loginType} Login</h3>
+//           <div className="mt-3 d-flex justify-content-center gap-3">
+//             <Button
+//               variant={loginType === "User" ? "primary" : "outline-primary"}
+//               onClick={() => handleLoginTypeSelect("User")}
+//               className="me-2"
+//             >
+//               User Login
+//             </Button>
+//             <Button
+//               variant={loginType === "Admin" ? "primary" : "outline-primary"}
+//               onClick={() => handleLoginTypeSelect("Admin")}
+//             >
+//               Admin Login
+//             </Button>
+//           </div>
+
+//           {errorMessage && (
+//             <div className="text-danger mt-3">{errorMessage}</div>
+//           )}
+
+//           <Form onSubmit={handleSubmit} className="mt-3">
+//             <Form.Group controlId="formEmail" className="mb-3">
+//               <Form.Label>Email</Form.Label>
+//               <Form.Control
+//                 type="text"
+//                 name="email"
+//                 value={email}
+//                 onChange={handleChange}
+//                 placeholder="Enter email"
+//               />
+//               {emailError && <div className="text-danger">{emailError}</div>}
+//             </Form.Group>
+
+//             <Form.Group controlId="formPassword" className="mb-3">
+//               <Form.Label>Password</Form.Label>
+//               <Form.Control
+//                 type="password"
+//                 name="password"
+//                 value={password}
+//                 onChange={handleChange}
+//                 placeholder="Enter password"
+//               />
+//               {passwordError && <div className="text-danger">{passwordError}</div>}
+//             </Form.Group>
+
+//             <Button type="submit" className="w-100">
+//               Login
+//             </Button>
+//           </Form>
+//         </div>
+//       </div>
+//     );
+//   }
+// }
+
+// export default LoginModal;
+
+///================================================================================
+
 import React, { Component } from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import { FaTimes } from "react-icons/fa";
@@ -57,7 +149,7 @@ class LoginModal extends Component {
     }
     if (!email || !email.includes("@gmail.com"))
       errors.email = "Valid Email is required.";
-    if (!mobileNumber || mobileNumber.length < 10 || mobileNumber.length > 10)
+    if (!mobileNumber || mobileNumber.length < 10 || mobileNumber.length>10)
       errors.mobileNumber = "Valid Mobile Number is required.";
     if (!password || password.length < 6)
       errors.password = "Password must be at least 6 characters.";
@@ -106,7 +198,8 @@ class LoginModal extends Component {
             // this.toggleRegister();
           }, 5000);
 
-          //Optionally handle the form submission 
+          //Optionally handle the form submission (if you need to trigger something else)
+                   
         } else {
           const errorText = await res.text();
           throw new Error(errorText || "Registration failed.");
@@ -115,14 +208,14 @@ class LoginModal extends Component {
       .catch((err) => {
         this.setState({
           registerErrors: { general: err.message || "Registration failed." },
-          showNotification: true, 
+          showNotification: true, // Show error message
         });
 
         // Set a timeout to hide the notification after 5 seconds
         setTimeout(() => {
           this.setState({
             registerErrors: { general: "" },
-            showNotification: false, 
+            showNotification: false, // Hide error message after 5 seconds
           });
         }, 5000);
       });
@@ -349,7 +442,6 @@ class LoginModal extends Component {
                         <option value="">Select Gender</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
-                        <option value="Others">Others</option>
                       </Form.Control>
                       {registerErrors.gender && (
                         <div className="text-danger">

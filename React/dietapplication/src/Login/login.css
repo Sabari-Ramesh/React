@@ -11,10 +11,7 @@
   padding: 5rem 0;
 }
 
-/* .testimonials-section {
-  background-color: #f1f9ff;
-  padding: 5rem 0;
-} */
+
 
 .feature-card,
 .testimonial-card {
@@ -28,14 +25,6 @@
   color: #fbf3f3;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-
-/* .testimonial-card {
-  background-color: #287bc5;
-  padding: 1rem;
-  border-radius: 8px;
-  color: #ffffff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-} */
 
 .login-overlay {
   position: fixed;
@@ -85,9 +74,7 @@
   transition: color 0.3s ease;
 }
 
-/* .close-btn:hover {
-  color: #ff6b6b;
-} */
+
 
 /* Login Type Toggle Buttons */
 .login-type-toggle {

@@ -1,5 +1,5 @@
 
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { Button, Table, Form, Container, Row, Col } from "react-bootstrap";
 
 class UserSearchByDate extends Component {
@@ -10,32 +10,42 @@ class UserSearchByDate extends Component {
       endDate: "",
       users: [],
       errorMessage: "",
-      noUsers: false
+      noUsers: false,
+      startDateError: "",
+      endDateError: "",
     };
   }
 
-  // Validate dates
+  // Validate dates separately
   validateDates = () => {
     const { startDate, endDate } = this.state;
     const currentDate = new Date().toISOString().split("T")[0];
+    let isValid = true;
 
-    if (!startDate || !endDate) {
-      this.setState({ errorMessage: "Please enter both Start Date and End Date" });
-      return false;
+    if (!startDate) {
+      this.setState({ startDateError: "Start Date is required" });
+      isValid = false;
+    } else if (new Date(startDate) > new Date(currentDate)) {
+      this.setState({ startDateError: "Start Date cannot be in the future" });
+      isValid = false;
+    } else {
+      this.setState({ startDateError: "" });
     }
 
-    if (new Date(startDate) > new Date(endDate)) {
-      this.setState({ errorMessage: "Start Date must be before End Date" });
-      return false;
+    if (!endDate) {
+      this.setState({ endDateError: "End Date is required" });
+      isValid = false;
+    } else if (new Date(endDate) > new Date(currentDate)) {
+      this.setState({ endDateError: "End Date cannot be in the future" });
+      isValid = false;
+    } else if (new Date(startDate) > new Date(endDate)) {
+      this.setState({ endDateError: "End Date must be after Start Date" });
+      isValid = false;
+    } else {
+      this.setState({ endDateError: "" });
     }
 
-    if (new Date(startDate) > new Date(currentDate) || new Date(endDate) > new Date(currentDate)) {
-      this.setState({ errorMessage: "Dates cannot be in the future" });
-      return false;
-    }
-
-    this.setState({ errorMessage: "" });
-    return true;
+    return isValid;
   };
 
   // Handle search
@@ -46,57 +56,82 @@ class UserSearchByDate extends Component {
       fetch("http://localhost:8080/userdetails/birth-dates", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ startDate, endDate })
+        body: JSON.stringify({ startDate, endDate }),
       })
-      .then(response => {
-        if (!response.ok) throw new Error("Network response was not ok");
-        return response.json();
-      })
-      .then(data => {
-        this.setState({
-          users: data,
-          noUsers: data.length === 0,
-          errorMessage: data.length === 0 ? "No users found in this date range." : ""
+        .then((response) => {
+          if (!response.ok) throw new Error("Network response was not ok");
+          return response.json();
+        })
+        .then((data) => {
+          this.setState({
+            users: data,
+            noUsers: data.length === 0,
+            errorMessage:
+              data.length === 0 ? "No users found in this date range." : "",
+          });
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+          this.setState({ errorMessage: "Failed to fetch data." });
         });
-      })
-      .catch(error => {
-        console.error("Error fetching data:", error);
-        this.setState({ errorMessage: "Failed to fetch data." });
-      });
     }
   };
 
   render() {
-    const { startDate, endDate, users, errorMessage, noUsers } = this.state;
+    const {
+      startDate,
+      endDate,
+      users,
+      errorMessage,
+      noUsers,
+      startDateError,
+      endDateError,
+    } = this.state;
+
     return (
       <Container>
-        <h1 className="text-center my-4">User Details by Date Range</h1>
-        <Row className="mb-4">
-          <Col xs={12} md={5}>
-            <Form.Group controlId="startDate">
-              <Form.Label>Start Date</Form.Label>
-              <Form.Control
-                type="date"
-                value={startDate}
-                onChange={(e) => this.setState({ startDate: e.target.value })}
-              />
-            </Form.Group>
-          </Col>
-          <Col xs={12} md={5}>
-            <Form.Group controlId="endDate">
-              <Form.Label>End Date</Form.Label>
-              <Form.Control
-                type="date"
-                value={endDate}
-                onChange={(e) => this.setState({ endDate: e.target.value })}
-              />
-            </Form.Group>
-          </Col>
-          <Col xs="auto" className="d-flex align-items-end">
-            <Button variant="primary" onClick={this.handleSearch}>Search</Button>
-          </Col>
-        </Row>
-        {errorMessage && <p className="text-danger">{errorMessage}</p>}
+        <h2 className="text-center my-4">User Details by Date of Birth</h2>
+        <Form>
+          <Row className="align-items-center">
+            <Col xs={12} md={4}>
+              <Form.Group controlId="startDate">
+                <Form.Label>Start Date</Form.Label>
+                <Form.Control
+                  type="date"
+                  value={startDate}
+                  onChange={(e) => this.setState({ startDate: e.target.value })}
+                />
+                <div style={{ minHeight: "20px" }}>
+                  {startDateError && (
+                    <div className="text-danger">{startDateError}</div>
+                  )}
+                </div>
+              </Form.Group>
+            </Col>
+            <Col xs={12} md={4}>
+              <Form.Group controlId="endDate">
+                <Form.Label>End Date</Form.Label>
+                <Form.Control
+                  type="date"
+                  value={endDate}
+                  onChange={(e) => this.setState({ endDate: e.target.value })}
+                />
+                <div style={{ minHeight: "20px" }}>
+                  {endDateError && (
+                    <div className="text-danger">{endDateError}</div>
+                  )}
+                </div>
+              </Form.Group>
+            </Col>
+            <Col xs="auto" className="d-flex align-items-center">
+              <Button variant="primary" onClick={this.handleSearch}>
+                Search
+              </Button>
+            </Col>
+          </Row>
+        </Form>
+
+        {/* {errorMessage && <p className="text-danger mt-3">{errorMessage}</p>} */}
 
         <div className="mt-5">
           {users.length > 0 ? (
@@ -134,3 +169,4 @@ class UserSearchByDate extends Component {
 }
 
 export default UserSearchByDate;
+
